@@ -1,0 +1,13 @@
+{
+	"name": "tiny-assemblers",
+	"author": "SafTheLamb",
+	"version": "1.0.0",
+	"title": "Tiny Assemblers",
+	"description": "Yet another tiny assembling machine mod, this time 1x1, 1-ingredient-only, and ",
+	"factorio_version": "1.1",
+	"dependencies":
+	[
+		"base >= 1.1.87",
+		"? aai-industry"
+	]
+}
