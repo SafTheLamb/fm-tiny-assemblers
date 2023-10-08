@@ -217,6 +217,7 @@ data:extend(
   {
     type = "assembling-machine",
     name = "tiny-assembling-machine-3",
+    localised_name = {"", {"entity-name.assembling-machine-3"}, " ", {"entity-name.tiny-assembling-machine-suffix"}},
     icon = "__base__/graphics/icons/assembling-machine-3.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral","placeable-player", "player-creation"},
