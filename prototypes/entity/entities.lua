@@ -26,7 +26,9 @@ data:extend(
     damaged_trigger_effect = hit_effects.entity(),
     fast_replaceable_group = "tiny-assembling-machine",
     next_upgrade = "tiny-assembling-machine-2",
+
     alert_icon_shift = util.by_pixel(-1, -4),
+    scale_entity_info_icon = true,
     animation =
     {
       layers =
@@ -118,7 +120,6 @@ data:extend(
     max_health = 175,
     corpse = "tiny-assembling-machine-2-remnants",
     dying_explosion = "tiny-assembling-machine-2-explosion",
-    alert_icon_shift = util.by_pixel(-1, -4),
     resistances =
     {
       {
@@ -131,6 +132,9 @@ data:extend(
     damaged_trigger_effect = hit_effects.entity(),
     fast_replaceable_group = "tiny-assembling-machine",
     next_upgrade = "tiny-assembling-machine-3",
+    
+    alert_icon_shift = util.by_pixel(-1, -4),
+    scale_entity_info_icon = true,
     animation =
     {
       layers =
@@ -225,7 +229,6 @@ data:extend(
     max_health = 200,
     corpse = "tiny-assembling-machine-3-remnants",
     dying_explosion = "tiny-assembling-machine-3-explosion",
-    alert_icon_shift = util.by_pixel(-1, -4),
     resistances =
     {
       {
@@ -254,6 +257,9 @@ data:extend(
     damaged_trigger_effect = hit_effects.entity(),
     drawing_box = {{-0.5, -0.7}, {0.5, 0.5}},
     fast_replaceable_group = "tiny-assembling-machine",
+    
+    alert_icon_shift = util.by_pixel(-1, -4),
+    scale_entity_info_icon = true,
     animation =
     {
       layers =
