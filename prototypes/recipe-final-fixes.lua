@@ -23,11 +23,11 @@ end
 
 local tiny_1 = util.table.deepcopy(data.raw.recipe["assembling-machine-1"])
 fixup_recipe(tiny_1, "")
-log(serpent.block(tiny_1))
 local tiny_2 = util.table.deepcopy(data.raw.recipe["assembling-machine-2"])
 fixup_recipe(tiny_2, "assembling-machine-1")
 log(serpent.block(tiny_2))
--- local tiny_3 = util.table.deepcopy(data.raw.recipe["assembling-machine-3"])
--- fixup_recipe(tiny_3, "assembling-machine-2")
+local tiny_3 = util.table.deepcopy(data.raw.recipe["assembling-machine-3"])
+fixup_recipe(tiny_3, "assembling-machine-2")
+log(serpent.block(tiny_3))
 
 data:extend{tiny_1, tiny_2, tiny_3}

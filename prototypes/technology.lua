@@ -7,4 +7,4 @@ end
 
 add_unlock("automation", "tiny-assembling-machine-1")
 add_unlock("automation-2", "tiny-assembling-machine-2")
--- add_unlock("automation-3", "tiny-assembling-machine-3")
+add_unlock("automation-3", "tiny-assembling-machine-3")
