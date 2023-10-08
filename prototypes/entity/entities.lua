@@ -38,7 +38,7 @@ data:extend(
           height = 114,
           frame_count = 32,
           line_length = 8,
-          shift = util.by_pixel(0, 2),
+          shift = util.by_pixel(0, 2/3),
           scale = 1/3,
           hr_version =
           {
@@ -48,7 +48,7 @@ data:extend(
             height = 226,
             frame_count = 32,
             line_length = 8,
-            shift = util.by_pixel(0, 2),
+            shift = util.by_pixel(0, 2/3),
             scale = 0.5/3
           }
         },
@@ -61,7 +61,7 @@ data:extend(
           line_length = 1,
           repeat_count = 32,
           draw_as_shadow = true,
-          shift = util.by_pixel(8.5, 5.5),
+          shift = util.by_pixel(8.5/3, 5.5/3),
           scale = 1/3,
           hr_version =
           {
@@ -73,7 +73,7 @@ data:extend(
             line_length = 1,
             repeat_count = 32,
             draw_as_shadow = true,
-            shift = util.by_pixel(8.5, 5),
+            shift = util.by_pixel(8.5/3, 5/3),
             scale = 0.5/3
           }
         }
@@ -142,7 +142,7 @@ data:extend(
           height = 110,
           frame_count = 32,
           line_length = 8,
-          shift = util.by_pixel(0, 4),
+          shift = util.by_pixel(0, 4/3),
           scale = 1/3,
           hr_version =
           {
@@ -152,7 +152,7 @@ data:extend(
             height = 218,
             frame_count = 32,
             line_length = 8,
-            shift = util.by_pixel(0, 4),
+            shift = util.by_pixel(0, 4/3),
             scale = 0.5/3
           }
         },
@@ -164,7 +164,7 @@ data:extend(
           frame_count = 32,
           line_length = 8,
           draw_as_shadow = true,
-          shift = util.by_pixel(12, 5),
+          shift = util.by_pixel(12/3, 5/3),
           scale = 1/3,
           hr_version =
           {
@@ -175,7 +175,7 @@ data:extend(
             frame_count = 32,
             line_length = 8,
             draw_as_shadow = true,
-            shift = util.by_pixel(12, 4.75),
+            shift = util.by_pixel(12/3, 4.75/3),
             scale = 0.5/3
           }
         }
@@ -264,7 +264,7 @@ data:extend(
           height = 119,
           frame_count = 32,
           line_length = 8,
-          shift = util.by_pixel(0, -0.5),
+          shift = util.by_pixel(0, -0.5/3),
           scale = 1/3,
           hr_version =
           {
@@ -274,7 +274,7 @@ data:extend(
             height = 237,
             frame_count = 32,
             line_length = 8,
-            shift = util.by_pixel(0, -0.75),
+            shift = util.by_pixel(0, -0.75/3),
             scale = 0.5/3
           }
         },
@@ -286,7 +286,7 @@ data:extend(
           frame_count = 32,
           line_length = 8,
           draw_as_shadow = true,
-          shift = util.by_pixel(28, 4),
+          shift = util.by_pixel(28/3, 4/3),
           scale = 1/3,
           hr_version =
           {
@@ -297,7 +297,7 @@ data:extend(
             frame_count = 32,
             line_length = 8,
             draw_as_shadow = true,
-            shift = util.by_pixel(28, 4),
+            shift = util.by_pixel(28/3, 4/3),
             scale = 0.5/3
           }
         }
