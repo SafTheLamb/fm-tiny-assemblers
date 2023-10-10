@@ -211,9 +211,11 @@ data:extend(
       emissions_per_minute = 1
     },
     energy_usage = "75kW",
-    module_specification =
+    module_specification = settings.startup["tiny-assembling-machine-modules"].value and
     {
-      module_slots = 1
+      module_slots = 1,
+      module_info_icon_shift = {0, 0.7/3},
+      module_info_icon_scale = 0.25
     },
     allowed_effects = {"consumption", "speed", "productivity", "pollution"}
   },
@@ -321,10 +323,12 @@ data:extend(
       emissions_per_minute = 1
     },
     energy_usage = "187.5kW",
-    module_specification =
+    module_specification = settings.startup["tiny-assembling-machine-modules"].value and
     {
-      module_slots = 2
-    },
+      module_slots = 1,
+      module_info_icon_shift = {0, 0.7/3},
+      module_info_icon_scale = 0.25
+    } or nil,
     allowed_effects = {"consumption", "speed", "productivity", "pollution"}
   }
 
