@@ -9,9 +9,10 @@ data:extend(
     maximum_value = 1
   },
   {
-    type = "bool-setting",
+    type = "string-setting",
     name = "tiny-assembling-machine-modules",
     setting_type = "startup",
-    default_value = true
+    default_value = "One (1)",
+    allowed_values = {"None (0)", "One (1)", "Half (x 0.5)", "Full (x 1)"}
   }
 })
