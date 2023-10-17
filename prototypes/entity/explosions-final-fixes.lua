@@ -42,21 +42,23 @@ local function fixup_trigger(trigger)
 end
 
 local function make_tiny_explosion(explosion_name, fixup_base)
-  local tiny_explosion = util.table.deepcopy(data.raw.explosion[explosion_name])
-  tiny_explosion.name = "tiny-"..tiny_explosion.name
-  tiny_explosion.animations = explosion_animations.small_explosion()
-  tiny_explosion.sound = sounds.medium_explosion(0.6)
-  if tiny_explosion.created_effect then
-    if tiny_explosion.created_effect[1] then
-      for _,trigger in pairs(tiny_explosion.created_effect) do
-        fixup_trigger(trigger)
+  if data.raw.explosion[explosion_name] then
+    local tiny_explosion = util.table.deepcopy(data.raw.explosion[explosion_name])
+    tiny_explosion.name = "tiny-"..tiny_explosion.name
+    tiny_explosion.animations = explosion_animations.small_explosion()
+    tiny_explosion.sound = sounds.medium_explosion(0.6)
+    if tiny_explosion.created_effect then
+      if tiny_explosion.created_effect[1] then
+        for _,trigger in pairs(tiny_explosion.created_effect) do
+          fixup_trigger(trigger)
+        end
+      else
+        fixup_trigger(tiny_explosion.created_effect)
       end
-    else
-      fixup_trigger(tiny_explosion.created_effect)
     end
-  end
 
-  data:extend{tiny_explosion}
+    data:extend{tiny_explosion}
+  end
 end
 
 make_tiny_explosion("assembling-machine-1-explosion")

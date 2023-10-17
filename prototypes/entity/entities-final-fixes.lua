@@ -52,8 +52,12 @@ local function make_tiny_entity(entity_name)
   tiny_entity.minable.mining_time = 0.5 * tiny_entity.minable.mining_time
   tiny_entity.minable.result = "tiny-"..tiny_entity.minable.result
   tiny_entity.max_health = 0.5 * tiny_entity.max_health + 50
-  tiny_entity.corpse = "tiny-"..tiny_entity.corpse
-  tiny_entity.dying_explosion = "tiny-"..tiny_entity.dying_explosion
+  if data.raw.corpse["tiny-"..tiny_entity.corpse] then
+    tiny_entity.corpse = "tiny-"..tiny_entity.corpse
+  end
+  if data.raw.explosion["tiny-"..tiny_entity.dying_explosion] then
+    tiny_entity.dying_explosion = "tiny-"..tiny_entity.dying_explosion
+  end
   if tiny_entity.fast_replaceable_group then
     tiny_entity.fast_replaceable_group = "tiny-"..tiny_entity.fast_replaceable_group
   end

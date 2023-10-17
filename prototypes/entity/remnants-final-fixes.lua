@@ -21,21 +21,23 @@ local function fixup_layers(animation)
 end
 
 local function make_tiny_corpse(corpse_name)
-  local tiny_corpse = util.table.deepcopy(data.raw.corpse[corpse_name])
-  tiny_corpse.name = "tiny-"..tiny_corpse.name
-  tiny_corpse.selection_box = {{-0.5, -0.5}, {0.5, 0.5}}
-  tiny_corpse.tile_width = 1
-  tiny_corpse.tile_height = 1
+  if data.raw.corpse[corpse_name] then
+    local tiny_corpse = util.table.deepcopy(data.raw.corpse[corpse_name])
+    tiny_corpse.name = "tiny-"..tiny_corpse.name
+    tiny_corpse.selection_box = {{-0.5, -0.5}, {0.5, 0.5}}
+    tiny_corpse.tile_width = 1
+    tiny_corpse.tile_height = 1
 
-  if tiny_corpse.animation[1] then
-    for _,animation in pairs(tiny_corpse.animation) do
-      fixup_layers(animation)
+    if tiny_corpse.animation[1] then
+      for _,animation in pairs(tiny_corpse.animation) do
+        fixup_layers(animation)
+      end
+    else
+      fixup_layers(tiny_corpse.animation)
     end
-  else
-    fixup_layers(tiny_corpse.animation)
-  end
 
-  data:extend{tiny_corpse}
+    data:extend{tiny_corpse}
+  end
 end
 
 make_tiny_corpse("assembling-machine-1-remnants")

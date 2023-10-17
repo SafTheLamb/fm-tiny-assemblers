@@ -11,9 +11,10 @@ local function make_tiny_item(item_name)
   else
     base_icons = {{icon=tiny_item.icon, icon_size = tiny_item.icon_size, icon_mipmaps = tiny_item.icon_mipmaps}}
   end
+  local old_icon_size = (not tiny_item.icons) and tiny_item.icon_size or 64
   tiny_item.icons = {{icon = "__tiny-assemblers__/graphics/icons/tiny.png", icon_size = 64}}
   for _,base_icon in pairs(base_icons) do
-    base_icon.scale = 0.7 * (base_icon.scale or 0.5)
+    base_icon.scale = 0.7 * (base_icon.scale or 0.5) * (64 / old_icon_size)
     table.insert(tiny_item.icons, base_icon)
   end
   
