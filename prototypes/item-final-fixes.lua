@@ -37,3 +37,7 @@ end
 if mods["space-exploration"] then
   make_tiny_item("se-space-assembling-machine")
 end
+if mods["exotic-industries"] then
+  data.raw.item["ei_neo-assembler"].order = "c[assembling-machine-3]-c"
+  make_tiny_item("ei_neo-assembler")
+end

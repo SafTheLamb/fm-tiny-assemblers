@@ -13,4 +13,7 @@ for index, force in pairs(game.forces) do
   if game.active_mods["space-exploration"] then
     recipes["tiny-se-space-assembling-machine"].enabled = techs["se-space-assembling"].researched
   end
+  if game.active_mods["exotic-industries"] then
+    recipes["tiny-ei_neo-assembler"].enabled = techs["ei_neo-assembler"].researched
+  end
 end

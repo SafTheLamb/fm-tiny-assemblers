@@ -16,3 +16,6 @@ end
 if mods["space-exploration"] then
   add_tiny_unlock("se-space-assembling", "tiny-se-space-assembling-machine")
 end
+if mods["exotic-industries"] then
+  add_tiny_unlock("ei_neo-assembler", "tiny-ei_neo-assembler")
+end

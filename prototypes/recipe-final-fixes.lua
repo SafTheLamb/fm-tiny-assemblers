@@ -20,6 +20,9 @@ local function fixup_tiny_recipe(tiny_recipe, recipe_name)
   tiny_recipe.icons = nil
   tiny_recipe.icon_size = nil
   tiny_recipe.icon_mipmaps = nil
+  if tiny_recipe.main_product then
+    tiny_recipe.main_product = "tiny-"..tiny_recipe.main_product
+  end
   if tiny_recipe.result then tiny_recipe.result = "tiny-"..tiny_recipe.result end
   if tiny_recipe.results then
     for _,result in pairs(tiny_recipe.results) do
@@ -49,4 +52,7 @@ if mods["bobassembly"] then
 end
 if mods["space-exploration"] then
   make_tiny_recipe("se-space-assembling-machine")
+end
+if mods["exotic-industries"] then
+  make_tiny_recipe("ei_neo-assembler")
 end

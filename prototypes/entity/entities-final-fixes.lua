@@ -54,6 +54,8 @@ local function make_tiny_entity(entity_name)
   tiny_entity.max_health = 0.5 * tiny_entity.max_health + 50
   if data.raw.corpse["tiny-"..tiny_entity.corpse] then
     tiny_entity.corpse = "tiny-"..tiny_entity.corpse
+  else
+    tiny_entity.corpse = "small-remnants"
   end
   if data.raw.explosion["tiny-"..tiny_entity.dying_explosion] then
     tiny_entity.dying_explosion = "tiny-"..tiny_entity.dying_explosion
@@ -62,7 +64,11 @@ local function make_tiny_entity(entity_name)
     tiny_entity.fast_replaceable_group = "tiny-"..tiny_entity.fast_replaceable_group
   end
   if tiny_entity.next_upgrade then
-    tiny_entity.next_upgrade = "tiny-"..tiny_entity.next_upgrade
+    if data.raw["assembling-machine"]["tiny-"..tiny_entity.next_upgrade] then
+      tiny_entity.next_upgrade = "tiny-"..tiny_entity.next_upgrade
+    else
+      tiny_entity.next_upgrade = nil
+    end
   end
 
   tiny_entity.collision_box = {{-0.35, -0.35}, {0.35, 0.35}}
@@ -106,14 +112,17 @@ local function make_tiny_entity(entity_name)
   data:extend{tiny_entity}
 end
 
-make_tiny_entity("assembling-machine-1")
-make_tiny_entity("assembling-machine-2")
-make_tiny_entity("assembling-machine-3")
-if mods["bobassembly"] then
-  make_tiny_entity("assembling-machine-4")
-  make_tiny_entity("assembling-machine-5")
-  make_tiny_entity("assembling-machine-6")
+if mods["exotic-industries"] then
+  make_tiny_entity("ei_neo-assembler")
 end
 if mods["space-exploration"] then
   make_tiny_entity("se-space-assembling-machine")
 end
+if mods["bobassembly"] then
+  make_tiny_entity("assembling-machine-6")
+  make_tiny_entity("assembling-machine-5")
+  make_tiny_entity("assembling-machine-4")
+end
+make_tiny_entity("assembling-machine-3")
+make_tiny_entity("assembling-machine-2")
+make_tiny_entity("assembling-machine-1")
