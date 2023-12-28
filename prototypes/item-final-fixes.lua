@@ -41,3 +41,6 @@ if mods["exotic-industries"] then
   data.raw.item["ei_neo-assembler"].order = "c[assembling-machine-3]-c"
   make_tiny_item("ei_neo-assembler")
 end
+if mods["Ultracube"] then
+  make_tiny_item("cube-fabricator")
+end

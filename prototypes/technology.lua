@@ -19,3 +19,6 @@ end
 if mods["exotic-industries"] then
   add_tiny_unlock("ei_neo-assembler", "tiny-ei_neo-assembler")
 end
+if mods["Ultracube"] then
+  add_tiny_unlock("cube-fabricator", "tiny-cube-fabricator")
+end

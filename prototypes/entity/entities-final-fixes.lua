@@ -22,15 +22,16 @@ local function fixup_energy(str)
   end
 end
 
-local function fixup_layer(layer)
-  layer.scale = (layer.scale or 1) / 3
+local function fixup_layer(layer, scale)
+  scale = scale or 1/3
+  layer.scale = scale * (layer.scale or 1)
   if layer.shift then
-    layer.shift[1] = layer.shift[1] / 3
-    layer.shift[2] = layer.shift[2] / 3
+    layer.shift[1] = scale * layer.shift[1]
+    layer.shift[2] = scale * layer.shift[2]
   end
 
   if layer.hr_version then
-    fixup_layer(layer.hr_version)
+    fixup_layer(layer.hr_version, scale)
   end
 end
 
@@ -44,7 +45,7 @@ elseif modules_setting == "Full (x 1)" then
   tiny_modules_scalar = 1
 end
 
-local function make_tiny_entity(entity_name)
+local function make_tiny_entity(entity_name, scale)
   local tiny_entity = util.table.deepcopy(data.raw["assembling-machine"][entity_name])
   tiny_entity.localised_name = {"", tiny_entity.localised_name or {"entity-name."..tiny_entity.name}, " ", {"entity-name.tiny-assembling-machine-suffix"}}
   tiny_entity.name = "tiny-"..tiny_entity.name
@@ -91,12 +92,12 @@ local function make_tiny_entity(entity_name)
   -- shrink sprites
   if tiny_entity.idle_animation then
     for _,layer in pairs(tiny_entity.animation.layers) do
-      fixup_layer(layer)
+      fixup_layer(layer, scale)
     end
   end
   if tiny_entity.animation then
     for _,layer in pairs(tiny_entity.animation.layers) do
-      fixup_layer(layer)
+      fixup_layer(layer, scale)
     end
   end
 
@@ -126,3 +127,11 @@ end
 make_tiny_entity("assembling-machine-3")
 make_tiny_entity("assembling-machine-2")
 make_tiny_entity("assembling-machine-1")
+if mods["Ultracube"] then
+  make_tiny_entity("cube-fabricator", 1/2)
+  local tiny_entity = data.raw["assembling-machine"]["tiny-cube-fabricator"]
+  tiny_entity.collision_box = {{-0.75, -0.75}, {0.75, 0.75}}
+  tiny_entity.selection_box = {{-1, -1}, {1, 1}}
+  tiny_entity.drawing_box = nil
+  tiny_entity.dying_explosion = "medium-explosion"
+end
