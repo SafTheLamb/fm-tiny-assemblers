@@ -22,16 +22,60 @@ local function fixup_energy(str)
   end
 end
 
-local function fixup_layer(layer, scale)
-  scale = scale or 1/3
-  layer.scale = scale * (layer.scale or 1)
-  if layer.shift then
-    layer.shift[1] = scale * layer.shift[1]
-    layer.shift[2] = scale * layer.shift[2]
+local function fixup_animation(animation, scale)
+  animation.scale = scale * (animation.scale or 1)
+
+  if animation.shift then
+    animation.shift[1] = scale * animation.shift[1]
+    animation.shift[2] = scale * animation.shift[2]
   end
 
-  if layer.hr_version then
-    fixup_layer(layer.hr_version, scale)
+  if animation.north then
+    fixup_animation(animation.north, scale)
+  end
+  if animation.east then
+    fixup_animation(animation.east, scale)
+  end
+  if animation.south then
+    fixup_animation(animation.south, scale)
+  end
+  if animation.west then
+    fixup_animation(animation.west, scale)
+  end
+  if animation.sheet then
+    fixup_animation(animation.sheet, scale)
+  end
+  if animation.sheets then
+    for _,sheet in pairs(animation.sheets) do
+      fixup_animation(sheet, scale)
+    end
+  end
+  if animation.layers then
+    for _,layer in pairs(animation.layers) do
+      fixup_animation(layer, scale)
+    end
+  end
+end
+
+local function fixup_graphics_set(graphics_set, scale)
+  if graphics_set.frozen_patch then
+    fixup_animation(graphics_set.frozen_patch, scale)
+  end
+  if graphics_set.animation then
+    fixup_animation(graphics_set.animation, scale)
+  end
+  if graphics_set.idle_animation then
+    fixup_animation(graphics_set.idle_animation, scale)
+  end
+end
+
+local function fixup_alt_icon(icon_spec, scale)
+  local icon_scale = 0.5 * (1 + scale)
+  icon_spec.scale = icon_scale * (icon_spec.scale or 1)
+  icon_spec.scale_for_many = icon_scale * (icon_spec.scale_for_many or 1)
+  if icon_spec.shift then
+    icon_spec.shift[1] = scale * icon_spec.shift[1]
+    icon_spec.shift[2] = scale * icon_spec.shift[2]
   end
 end
 
@@ -46,6 +90,8 @@ elseif modules_setting == "Full (x 1)" then
 end
 
 local function make_tiny_entity(entity_name, scale)
+  scale = scale or 1/3
+
   local tiny_entity = util.table.deepcopy(data.raw["assembling-machine"][entity_name])
   tiny_entity.localised_name = {"", tiny_entity.localised_name or {"entity-name."..tiny_entity.name}, " ", {"entity-name.tiny-assembling-machine-suffix"}}
   tiny_entity.name = "tiny-"..tiny_entity.name
@@ -76,12 +122,26 @@ local function make_tiny_entity(entity_name, scale)
   tiny_entity.selection_box = {{-0.5, -0.5}, {0.5, 0.5}}
   tiny_entity.drawing_box = {{-0.5, -0.7}, {0.5, 0.5}}
   tiny_entity.alert_icon_shift = util.by_pixel(-1, -4)
-  tiny_entity.scale_entity_info_icon = true
+  tiny_entity.alert_icon_scale = scale * (tiny_entity.alert_icon_scale or 1)
+
+  if tiny_entity.icon_draw_specification == nil then
+    tiny_entity.icon_draw_specification = {}
+  end
+  fixup_alt_icon(tiny_entity.icon_draw_specification, scale)
+  if tiny_entity.icons_positioning then
+    for _,icon_spec in pairs(tiny_entity.icons_positioning) do
+      fixup_alt_icon(icon_spec, scale)
+    end
+  end
+  
   tiny_entity.ingredient_count = 1
   tiny_entity.fluid_boxes = nil
   if tiny_entity.energy_source then
     if tiny_entity.energy_source.emissions_per_minute then
-      tiny_entity.energy_source.emissions_per_minute = 0.5 * tiny_entity.energy_source.emissions_per_minute
+      for id,emissions in pairs(tiny_entity.energy_source.emissions_per_minute) do
+        -- emissions = 0.5 * emissions
+        tiny_entity.energy_source.emissions_per_minute[id] = 0.5 * tiny_entity.energy_source.emissions_per_minute[id]
+      end
     end
     if tiny_entity.energy_source.drain then
       tiny_entity.energy_source.drain = fixup_energy(tiny_entity.energy_source.drain)
@@ -90,15 +150,11 @@ local function make_tiny_entity(entity_name, scale)
   tiny_entity.energy_usage = fixup_energy(tiny_entity.energy_usage)
 
   -- shrink sprites
-  if tiny_entity.idle_animation then
-    for _,layer in pairs(tiny_entity.animation.layers) do
-      fixup_layer(layer, scale)
-    end
+  if tiny_entity.graphics_set then
+    fixup_graphics_set(tiny_entity.graphics_set, scale)
   end
-  if tiny_entity.animation then
-    for _,layer in pairs(tiny_entity.animation.layers) do
-      fixup_layer(layer, scale)
-    end
+  if tiny_entity.graphics_set_flipped then
+    fixup_graphics_set(tiny_entity.graphics_set_flipped, scale)
   end
 
   if tiny_entity.module_specification then

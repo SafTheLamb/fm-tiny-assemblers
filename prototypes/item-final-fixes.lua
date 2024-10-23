@@ -18,6 +18,10 @@ local function make_tiny_item(item_name)
     table.insert(tiny_item.icons, base_icon)
   end
   
+  if tiny_item.order then
+    tiny_item.order = tiny_item.order.."-tiny"
+  end
+  
   data:extend{tiny_item}
 
   -- change order of base assembler
