@@ -42,9 +42,6 @@ local function make_tiny_recipe(recipe_name)
   if tiny_recipe.normal then fixup_tiny_recipe(tiny_recipe.normal, recipe_name) end
   if tiny_recipe.expensive then fixup_tiny_recipe(tiny_recipe.expensive, recipe_name) end
   fixup_tiny_recipe(tiny_recipe, recipe_name)
-  if recipe_name == "cube-fabricator" then
-    log(serpent.block(tiny_recipe))
-  end
   data:extend{tiny_recipe}
 end
 
@@ -62,8 +59,6 @@ end
 if mods["exotic-industries"] then
   make_tiny_recipe("ei_neo-assembler")
 end
-log("ULTRACUBE RECIPE??")
 if mods["Ultracube"] then
-  log("ULTRACUBE RECIPE!!")
   make_tiny_recipe("cube-fabricator")
 end

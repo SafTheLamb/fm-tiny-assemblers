@@ -70,13 +70,13 @@ local function fixup_graphics_set(graphics_set, scale)
 end
 
 local function fixup_alt_icon(icon_spec, scale)
-  local icon_scale = 0.5 * (1 + scale)
-  icon_spec.scale = icon_scale * (icon_spec.scale or 1)
-  icon_spec.scale_for_many = icon_scale * (icon_spec.scale_for_many or 1)
-  if icon_spec.shift then
-    icon_spec.shift[1] = scale * icon_spec.shift[1]
-    icon_spec.shift[2] = scale * icon_spec.shift[2]
-  end
+  -- local icon_scale = 0.5 * (1 + scale)
+  -- icon_spec.scale = icon_scale * (icon_spec.scale or 1)
+  -- icon_spec.scale_for_many = icon_scale * (icon_spec.scale_for_many or 1)
+  -- if icon_spec.shift then
+  --   icon_spec.shift[1] = scale * icon_spec.shift[1]
+  --   icon_spec.shift[2] = scale * icon_spec.shift[2]
+  -- end
 end
 
 local modules_setting = settings.startup["tiny-assembling-machine-modules"].value
@@ -157,13 +157,8 @@ local function make_tiny_entity(entity_name, scale)
     fixup_graphics_set(tiny_entity.graphics_set_flipped, scale)
   end
 
-  if tiny_entity.module_specification then
-    tiny_entity.module_specification = (tiny_modules_scalar > 0) and
-    {
-      module_slots = math.ceil(tiny_modules_scalar * tiny_entity.module_specification.module_slots),
-      module_info_icon_shift = {0, 0.7/3},
-      module_info_icon_scale = 0.25
-    } or nil
+  if tiny_entity.module_slots then
+    tiny_entity.module_slots = math.ceil(tiny_modules_scalar * tiny_entity.module_slots)
   end
 
   data:extend{tiny_entity}

@@ -4,7 +4,6 @@ local function make_tiny_item(item_name)
   tiny_item.place_result = "tiny-"..tiny_item.place_result
 
   -- shrink the icons
-  log(serpent.block(tiny_item.icons))
   local base_icons = {}
   if tiny_item.icons then
     base_icons = util.table.deepcopy(tiny_item.icons)

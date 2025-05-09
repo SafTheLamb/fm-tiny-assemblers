@@ -1,18 +1,13 @@
 {
 	"name": "tiny-assemblers",
 	"author": "SafTheLamb",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"title": "Tiny Assemblers",
-	"description": "Yet another tiny assembling machine mod, this time 1x1 and 1-ingredient-only! Feel free to post and request support for other mods :)",
-	"dependencies":
-	[
+	"description": "Yet another tiny assembling machine mod, this time 1x1 and 1-ingredient-only!",
+	"dependencies": [
 		"base >= 2.0.7",
 		"? aai-industry",
-		"? bobassembly",
-		"? exotic-industries",
-		"? space-exploration",
-		"? Ultracube",
-		"! IndustrialRevolution3"
+		"? Ultracube"
 	],
 	"factorio_version": "2.0"
 }
