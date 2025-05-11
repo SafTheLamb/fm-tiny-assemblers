@@ -70,13 +70,13 @@ local function fixup_graphics_set(graphics_set, scale)
 end
 
 local function fixup_alt_icon(icon_spec, scale)
-  -- local icon_scale = 0.5 * (1 + scale)
-  -- icon_spec.scale = icon_scale * (icon_spec.scale or 1)
-  -- icon_spec.scale_for_many = icon_scale * (icon_spec.scale_for_many or 1)
-  -- if icon_spec.shift then
-  --   icon_spec.shift[1] = scale * icon_spec.shift[1]
-  --   icon_spec.shift[2] = scale * icon_spec.shift[2]
-  -- end
+  local icon_scale = 0.5 * (1 + scale)
+  icon_spec.scale = icon_scale * (icon_spec.scale or 1)
+  icon_spec.scale_for_many = icon_scale * (icon_spec.scale_for_many or 1)
+  if icon_spec.shift then
+    icon_spec.shift[1] = scale * icon_spec.shift[1]
+    icon_spec.shift[2] = scale * icon_spec.shift[2]
+  end
 end
 
 local modules_setting = settings.startup["tiny-assembling-machine-modules"].value
@@ -138,9 +138,8 @@ local function make_tiny_entity(entity_name, scale)
   tiny_entity.fluid_boxes = nil
   if tiny_entity.energy_source then
     if tiny_entity.energy_source.emissions_per_minute then
-      for id,emissions in pairs(tiny_entity.energy_source.emissions_per_minute) do
-        -- emissions = 0.5 * emissions
-        tiny_entity.energy_source.emissions_per_minute[id] = 0.5 * tiny_entity.energy_source.emissions_per_minute[id]
+      for idx,emissions in pairs(tiny_entity.energy_source.emissions_per_minute) do
+        tiny_entity.energy_source.emissions_per_minute[idx] = 0.5 * emissions
       end
     end
     if tiny_entity.energy_source.drain then
