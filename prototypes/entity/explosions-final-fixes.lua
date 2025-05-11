@@ -65,7 +65,7 @@ make_tiny_explosion("assembling-machine-1-explosion")
 make_tiny_explosion("assembling-machine-2-explosion")
 make_tiny_explosion("assembling-machine-3-explosion")
 if mods["bobassembly"] then
-  make_tiny_explosion("assembling-machine-4-explosion")
-  make_tiny_explosion("assembling-machine-5-explosion")
-  make_tiny_explosion("assembling-machine-6-explosion")
+  make_tiny_explosion("bob-assembling-machine-4-explosion")
+  make_tiny_explosion("bob-assembling-machine-5-explosion")
+  make_tiny_explosion("bob-assembling-machine-6-explosion")
 end

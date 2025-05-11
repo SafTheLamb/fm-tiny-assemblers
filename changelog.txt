@@ -2,6 +2,7 @@
 Version: 2.0.2
 Date: ????
   Changes:
+    - Fix compatibility code to not cause load error if an object is missing
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 2025-05-11

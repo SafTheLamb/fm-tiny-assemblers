@@ -1,4 +1,8 @@
 local function make_tiny_item(item_name)
+  if not data.raw.item[item_name] then
+    return
+  end
+
   local tiny_item = util.table.deepcopy(data.raw.item[item_name])
   tiny_item.name = "tiny-"..tiny_item.name
   tiny_item.place_result = "tiny-"..tiny_item.place_result
@@ -33,9 +37,9 @@ make_tiny_item("assembling-machine-1")
 make_tiny_item("assembling-machine-2")
 make_tiny_item("assembling-machine-3")
 if mods["bobassembly"] then
-  make_tiny_item("assembling-machine-4")
-  make_tiny_item("assembling-machine-5")
-  make_tiny_item("assembling-machine-6")
+  make_tiny_item("bob-assembling-machine-4")
+  make_tiny_item("bob-assembling-machine-5")
+  make_tiny_item("bob-assembling-machine-6")
 end
 if mods["space-exploration"] then
   make_tiny_item("se-space-assembling-machine")

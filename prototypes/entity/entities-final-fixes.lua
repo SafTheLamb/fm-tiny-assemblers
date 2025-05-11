@@ -90,8 +90,11 @@ elseif modules_setting == "Full (x 1)" then
 end
 
 local function make_tiny_entity(entity_name, scale)
-  scale = scale or 1/3
+  if not data.raw["assembling-machine"][entity_name] then
+    return
+  end
 
+  scale = scale or (1/3)
   local tiny_entity = util.table.deepcopy(data.raw["assembling-machine"][entity_name])
   tiny_entity.localised_name = {"", tiny_entity.localised_name or {"entity-name."..tiny_entity.name}, " ", {"entity-name.tiny-assembling-machine-suffix"}}
   tiny_entity.name = "tiny-"..tiny_entity.name
@@ -169,14 +172,17 @@ end
 if mods["space-exploration"] then
   make_tiny_entity("se-space-assembling-machine")
 end
-if mods["bobassembly"] then
-  make_tiny_entity("assembling-machine-6")
-  make_tiny_entity("assembling-machine-5")
-  make_tiny_entity("assembling-machine-4")
-end
 make_tiny_entity("assembling-machine-3")
 make_tiny_entity("assembling-machine-2")
 make_tiny_entity("assembling-machine-1")
+if mods["bobassembly"] then
+  make_tiny_entity("bob-assembling-machine-6")
+  make_tiny_entity("bob-assembling-machine-5")
+  make_tiny_entity("bob-assembling-machine-4")
+  if data.raw["assembling-machine"]["tiny-assembling-machine-3"] and data.raw["assembling-machine"]["tiny-bob-assembling-machine-4"] then
+    data.raw["assembling-machine"]["tiny-assembling-machine-3"].next_upgrade = "tiny-bob-assembling-machine-4"
+  end
+end
 if mods["Ultracube"] then
   make_tiny_entity("cube-fabricator", 1/2)
   local tiny_entity = data.raw["assembling-machine"]["tiny-cube-fabricator"]

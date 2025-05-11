@@ -37,6 +37,10 @@ local function fixup_tiny_recipe(tiny_recipe, recipe_name)
 end
 
 local function make_tiny_recipe(recipe_name)
+  if not data.raw.recipe[recipe_name] then
+    return
+  end
+
   local tiny_recipe = util.table.deepcopy(data.raw.recipe[recipe_name])
   tiny_recipe.name = "tiny-"..tiny_recipe.name
   if tiny_recipe.normal then fixup_tiny_recipe(tiny_recipe.normal, recipe_name) end
@@ -49,9 +53,9 @@ make_tiny_recipe("assembling-machine-1")
 make_tiny_recipe("assembling-machine-2")
 make_tiny_recipe("assembling-machine-3")
 if mods["bobassembly"] then
-  make_tiny_recipe("assembling-machine-4")
-  make_tiny_recipe("assembling-machine-5")
-  make_tiny_recipe("assembling-machine-6")
+  make_tiny_recipe("bob-assembling-machine-4")
+  make_tiny_recipe("bob-assembling-machine-5")
+  make_tiny_recipe("bob-assembling-machine-6")
 end
 if mods["space-exploration"] then
   make_tiny_recipe("se-space-assembling-machine")

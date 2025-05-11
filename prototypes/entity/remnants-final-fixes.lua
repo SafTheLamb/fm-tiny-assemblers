@@ -44,7 +44,7 @@ make_tiny_corpse("assembling-machine-1-remnants")
 make_tiny_corpse("assembling-machine-2-remnants")
 make_tiny_corpse("assembling-machine-3-remnants")
 if mods["bobassembly"] then
-  make_tiny_corpse("assembling-machine-4-remnants")
-  make_tiny_corpse("assembling-machine-5-remnants")
-  make_tiny_corpse("assembling-machine-6-remnants")
+  make_tiny_corpse("bob-assembling-machine-4-remnants")
+  make_tiny_corpse("bob-assembling-machine-5-remnants")
+  make_tiny_corpse("bob-assembling-machine-6-remnants")
 end
