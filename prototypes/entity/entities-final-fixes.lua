@@ -57,12 +57,35 @@ local function fixup_animation(animation, scale)
   end
 end
 
+local function fixup_working_visualisation(working_visualisation, scale)
+  if working_visualisation.north_animation then
+    fixup_animation(working_visualisation.north_animation, scale)
+  end
+  if working_visualisation.east_animation then
+    fixup_animation(working_visualisation.east_animation, scale)
+  end
+  if working_visualisation.south_animation then
+    fixup_animation(working_visualisation.south_animation, scale)
+  end
+  if working_visualisation.west_animation then
+    fixup_animation(working_visualisation.west_animation, scale)
+  end
+  if working_visualisation.animation then
+    fixup_animation(working_visualisation.animation, scale)
+  end
+end
+
 local function fixup_graphics_set(graphics_set, scale)
   if graphics_set.frozen_patch then
     fixup_animation(graphics_set.frozen_patch, scale)
   end
   if graphics_set.animation then
     fixup_animation(graphics_set.animation, scale)
+  end
+  if graphics_set.working_visualisations then
+    for _,working_visualisation in pairs(graphics_set.working_visualisations) do
+      fixup_working_visualisation(working_visualisation, scale)
+    end
   end
   if graphics_set.idle_animation then
     fixup_animation(graphics_set.idle_animation, scale)
