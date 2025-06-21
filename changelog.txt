@@ -2,6 +2,7 @@
 Version: 2.0.3
 Date: ????
   Changes:
+    - Fix circuit connector location (shoutout to Quezler's circuit connector placement helper mod)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.2
 Date: 2025-05-11

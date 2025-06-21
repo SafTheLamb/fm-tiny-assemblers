@@ -127,6 +127,17 @@ local function make_tiny_entity(entity_name, scale)
   tiny_entity.alert_icon_shift = util.by_pixel(-1, -4)
   tiny_entity.alert_icon_scale = scale * (tiny_entity.alert_icon_scale or 1)
 
+  local connector_definition = {variation=2, main_offset=util.by_pixel(scale*4.25, scale*-2.625), shadow_offset=util.by_pixel(scale*8.25, scale*1.625), show_shadow=true}
+  tiny_entity.circuit_connector = circuit_connector_definitions.create_vector(
+    universal_connector_template,
+    {
+      connector_definition,
+      connector_definition,
+      connector_definition,
+      connector_definition
+    }
+  )
+
   if tiny_entity.icon_draw_specification == nil then
     tiny_entity.icon_draw_specification = {}
   end
