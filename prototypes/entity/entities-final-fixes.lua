@@ -112,6 +112,10 @@ elseif modules_setting == "Full (x 1)" then
   tiny_modules_scalar = 1
 end
 
+local fluid_setting = settings.startup["tiny-assembling-accept-fluids"].value
+
+local tiny_fluid_scalar = settings.startup["tiny-assembling-fluid-volume"].value
+
 local function make_tiny_entity(entity_name, scale)
   if not data.raw["assembling-machine"][entity_name] then
     return
@@ -172,7 +176,20 @@ local function make_tiny_entity(entity_name, scale)
   end
   
   tiny_entity.ingredient_count = 1
-  tiny_entity.fluid_boxes = nil
+
+  if fluid_setting then
+    if tiny_entity.fluid_boxes then
+      for _,fluid_boxes in pairs(tiny_entity.fluid_boxes) do
+        fluid_boxes.volume = fluid_boxes.volume * tiny_fluid_scalar
+        for _,pipe_connections in pairs(fluid_boxes.pipe_connections) do
+            pipe_connections.position = {0, 0}
+        end
+      end
+    end
+  else
+    tiny_entity.fluid_boxes = nil
+  end
+
   if tiny_entity.energy_source then
     if tiny_entity.energy_source.emissions_per_minute then
       for idx,emissions in pairs(tiny_entity.energy_source.emissions_per_minute) do
